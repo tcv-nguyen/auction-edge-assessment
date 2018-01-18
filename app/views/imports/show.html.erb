@@ -9,8 +9,12 @@
   </thead>
   <tbody>
     <% @auction_houses.each do |house| %>
-      <% total_profit = house.auctions.sum(:profit) %>
-      <% total_vehicle = house.vehicles.count %>
+      <%
+        auctions = house.auctions.to_a
+        vehicles = house.vehicles.to_a
+        total_profit = auctions.sum(&:profit)
+        total_vehicle = vehicles.count
+      %>
       <tr>
         <td>
           <%= house.name %> (<%= house.city %>)

@@ -22,7 +22,7 @@ class ImportsController < ApplicationController
         data = @header.zip(row).to_h
         Auction.import(data)
       end
-    end
+    end if file
 
     redirect_to imports_path
   end
@@ -33,13 +33,9 @@ class ImportsController < ApplicationController
 
   private
     def file
-      data = params[:import][:file]
+      data = params[:import][:file] if params[:import]
       if data.present?
         data.tempfile
       end
-    end
-
-    def header
-
     end
 end
