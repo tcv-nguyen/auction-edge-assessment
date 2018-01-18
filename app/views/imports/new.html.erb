@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-lg-4 col-lg-offset-4">
+    <%= form_for :import, url: imports_path do |f| %>
+      <div class="form-group">
+        <%= f.label :file, 'File' %>
+        <%= f.file_field :file, class: 'form-control' %>
+      </div>
+      <%= f.submit 'Upload', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

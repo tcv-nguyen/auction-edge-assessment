@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Auction House</th>
+      <th>Vehicles sold</th>
+      <th>Total profit</th>
+      <th>Average profit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @auction_houses.each do |house| %>
+      <% total_profit = house.auctions.sum(:profit) %>
+      <% total_vehicle = house.vehicles.count %>
+      <tr>
+        <td>
+          <%= house.name %> (<%= house.city %>)
+        </td>
+        <td><%= total_vehicle %></td>
+        <td><%= total_profit %></td>
+        <td><%= number_with_precision(total_profit / total_vehicle, precision: 2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
